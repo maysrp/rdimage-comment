@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>每日一图</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<meta charset="utf-8">
+
+
+
+
+</head>
+<body class="container">
+	<div class="row"  style="margin:30px;">
+		<h3>每日一图</h3>
+		<div class="text-center"><img class="bgimageadd" onclick="cgimg()" src='loading.gif' alt="点击刷新图片" title="点击刷新图片"/></div>
+	</div>
+	<div class="row text-center">
+		<a href="" class="btn btn-default img-url">图片评论</a>
+	</div>
+	<div class="row footer">
+		<P class="text-muted">图片全部来自网络若侵权请发邮件到admin[at]nyanya.tv,我们会及时删除。</P>
+	</div>
+	<script>	
+	image();
+	function image(){
+		var key= Date.parse(new Date());
+		key=key/1000;	
+		$.ajax({
+			url:'bgimageadd.php',
+			method:'post',
+			data:{key:key},
+			success:function(data){
+				$(".bgimageadd").attr('src',data.data);
+				$(".bgimageadd").attr('width',"100%");
+				$(".bgimageadd").attr('onclick','cgimg()');
+				$(".img-url").attr('href','image.php?id='+data.id)
+			},
+			beforeSend:function(){
+				$(".bgimageadd").removeAttr('onclick');
+			}	
+		})
+	}
+	function cgimg(){
+		$(".bgimageadd").removeAttr('width');
+		$(".bgimageadd").attr('src','loading.gif');
+		image();
+	}
+	</script>
+</body>
+</html>					
+
+
+
+
+
+
+
+
+
