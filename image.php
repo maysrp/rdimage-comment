@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
         <script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script type='text/javascript' src="https://cdn.staticfile.org/clipboard.js/1.5.15/clipboard.min.js"></script>
 	<meta charset="utf-8">
 </head>
 <body class="container">
@@ -41,22 +42,37 @@
 			<img src="<?php echo $data ?>" width="100%">
 		</div>
 	</div>
+	<div class="row url" style="margin-top:30px; ">
+		<div class="input-group">
+			<div class="input-group-addon">
+				<span>图片外链</span>
+			</div>
+			<input type="text" class="form-control" id="end" name="url" value="
+				<?php
+					echo "<img width='100%' src='http://".$_SERVER['HTTP_HOST']."/url.php?id=".$id."'/>";
+				?>
+			">
+			<div class="input-group-btn">
+				<button class="btn btn-info" id="copy"  data-clipboard-target="#end">复制链接</button>
+			</div>
+			<script type='text/javascript'>
+				var clipboard = new Clipboard('#copy');
+			</script>
+		</div>
+	</div>
 	<div class="row comment">
-		
-<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
-<script>
-var cloudTieConfig = {
-  url: document.location.href, 
-  sourceId: "",
-  productKey: "3cb7af11669242babf7e8fafca356c3f",
-  target: "cloud-tie-wrapper"
-};
-var yunManualLoad = true;
-Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
-</script>
-
-
+		<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+		<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+		<script>
+		var cloudTieConfig = {
+		  url: document.location.href, 
+		  sourceId: "",
+		  productKey: "3cb7af11669242babf7e8fafca356c3f",
+		  target: "cloud-tie-wrapper"
+		};
+		var yunManualLoad = true;
+		Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+		</script>
 	</div>
 	<div class="row">
 		<h3><a href="index.html">返回首页</a></h3>
